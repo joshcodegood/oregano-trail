@@ -10,7 +10,7 @@
 // let traveler = makeTraveler('Henrietta');
 // let traveler2 = makeTraveler('Juan');
 
-// hunt(traveler); // maybe get more food
+// hunt(traveler); // maybe get more food ****
 // eat(traveler2);
 // eat(traveler2); // juan is hungry
 // join(wagon, traveler);
@@ -49,18 +49,57 @@
 // Return the total amount of food among all occupants of the wagon.
 
 window.addEventListener('load', function() {
-    
-    let traveler = {
-        food: 0,
-        name: 'Maxwell',
-        isHealthy: true,
+
+    function makeTraveler(name) {
+        return {
+            food: 0,
+            name: name,
+            isHealthy: true,
+            /**hunt: function() {
+                
+            }**/
+        }
     }
 
-    let wagon = {
-        manifesto: [],
-        capacity: 0,
+    function makeWagon(cap) {
+        return {
+            manifesto: [],
+            capacity: cap,
+        }
     }
+
+    let wagon = makeWagon(5);
+    console.log(wagon);
+
+    let traveler = makeTraveler('Henry');
+    let traveler2 = makeTraveler('Evan');
 
     console.log(traveler);
-    console.log(wagon);
+    console.log(traveler2);
+
+
+    //Create a 'hunt' function. What should it do? Give a chance of earning food adding food to traveler's inventory.
+    function hunt(person) {
+        if (Math.random() >= 0.5) {
+            console.log('Nailed it.');
+            person.food += 100;
+        } else {
+            console.log("Ooh, so close");
+        }
+    };
+
+    function eat(person) {
+        console.log("Eatin' time!");
+        if (person.food > 0) {
+        person.food -= 25;
+        console.log(person.name + "'s food -25");
+        } else {
+            console.log(person.name + " doesn't have any food!")
+        }
+    };
+
+    hunt(traveler);
+    console.log(traveler);
+    eat(traveler);
+    console.log(traveler);
 })
